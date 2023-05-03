@@ -5,8 +5,9 @@ import thunkMiddleware from "redux-thunk";
 import reducer from "./reducer";
 
 const persistConfig = {
-  key: root,
+  key: "root",
   storage,
+  whitelist: ["auth", "moviesDetails"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
