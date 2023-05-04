@@ -13,15 +13,6 @@ export const retrievePopularMovies = createAsyncThunk(
   }
 );
 
-// export const videosMovies = createAsyncThunk(
-//   "movies/videosMovie",
-
-//   async () => {
-//     const movie = await axios.get(`${baseurl}/movie/popular?api_key=${apikey}`);
-//     console.log(movie);
-//   }
-// );
-
 export const SearchMovie = createAsyncThunk(
   "movies/SearchMovie",
 
