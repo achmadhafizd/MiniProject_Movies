@@ -1,3 +1,4 @@
 export { default as Navibar } from "./Navbar/Navibar.organism";
-export { default as NavTemp } from "./Navbar/NavTemp.organism";
-export { default as Cards } from "./Card/Cards.oragnism";
+export { default as Cards } from "./Card/Cards.organism";
+export { default as InputFormComment } from "./InputForm/InputFormComment.organism";
+export { default as Footer } from "./Footer/Footer.organism";
