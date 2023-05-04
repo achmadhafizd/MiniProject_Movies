@@ -1,0 +1,25 @@
+#footer {
+  padding-top: 20px;
+}
+
+#footer #brands h1 {
+  writing-mode: vertical-rl;
+  font-size: 70px;
+  transform: rotate(180deg);
+}
+
+#footer #navbar-footer a {
+  display: flex;
+  text-decoration: none;
+}
+
+#footer ul li button {
+  border: transparent;
+  background-color: transparent;
+}
+
+.wrapper-socmed {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
