@@ -32,5 +32,10 @@ module.exports = {
     ],
     "react/prop-types": "off",
     "react/destructuring-assignment": ["error", "always"],
+    "no-nested-ternary": "off",
+    "import/prefer-default-export": [
+      "off" || "warn" || "error",
+      { target: "any" },
+    ],
   },
 };

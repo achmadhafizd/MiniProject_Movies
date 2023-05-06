@@ -1,66 +1,12 @@
-import { gql, useQuery } from "@apollo/client";
-import { useFormik } from "formik";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-import authSlice from "../../config/redux/Auth/authSlice";
-import { useLoginInvalid } from "../../config/Toastify/Toastify";
+import LoginViewModel from "./Login.viewModel";
 
 function LoginView() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const RETRIEVE_SIGNUP = gql`
-    query RETRIEVE_SIGNUP {
-      Users {
-        id
-        emailSignUp
-        passwordSignUp
-      }
-    }
-  `;
-
-  const { data: RetrieveDataSignUp } = useQuery(RETRIEVE_SIGNUP);
-
-  const ValSignIn = Yup.object().shape({
-    emailLogin: Yup.string()
-      .email()
-      .required("Email is required")
-      .label("Email"),
-    passwordLogin: Yup.string()
-      .required("Password is required")
-      .label("Password"),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      emailLogin: "",
-      passwordLogin: "",
-    },
-    validationSchema: ValSignIn,
-    onSubmit: (values) => {
-      const validationLogin = RetrieveDataSignUp?.Users.find(
-        (user) =>
-          user.emailSignUp === values.emailLogin &&
-          user.passwordSignUp === values.passwordLogin
-      );
-
-      if (validationLogin) {
-        dispatch(authSlice.actions.loginUser(validationLogin));
-        dispatch(authSlice.actions.setSignIn(true));
-        navigate("/");
-      } else {
-        useLoginInvalid();
-      }
-      formik.resetForm();
-    },
-  });
-
+  const viewModel = LoginViewModel();
   return (
     <div className="flex justify-center items-center py-24 bg-lime-100 dark:bg-indigo-950">
       <div className="w-full max-w-sm p-4 bg-emerald-600 border border-lime-100 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-indigo-700">
-        <form className="space-y-6" onSubmit={formik.handleSubmit}>
+        <form className="space-y-6" onSubmit={viewModel.formik.handleSubmit}>
           <div className="flex justify-between items-center">
             <h5 className="text-xl font-medium text-lime-100 dark:text-white">
               Sign in to our platform
@@ -68,7 +14,7 @@ function LoginView() {
             <button
               className="inline-block text-lime-100 dark:text-pink-400 hover:bg-gray-800 dark:hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
               type="button"
-              onClick={() => navigate("/")}
+              onClick={() => viewModel.navigate("/")}
             >
               <svg
                 aria-hidden="true"
@@ -100,10 +46,10 @@ function LoginView() {
               id="email"
               className="bg-lime-50 border border-gray-200 text-green-700 text-sm rounded-lg focus:ring-green-400 focus:border-green-400 block w-full p-2.5 dark:bg-indigo-800 dark:border-pink-500 dark:placeholder-pink-300 dark:placeholder-opacity-60 dark:text-pink-400 dark:focus:ring-pink-400 dark:focus:border-pink-400"
               placeholder="JohnCena@gmail.com"
-              onChange={formik.handleChange}
-              value={formik.values.emailLogin}
+              onChange={viewModel.formik.handleChange}
+              value={viewModel.formik.values.emailLogin}
             />
-            <p style={{ color: "red" }}>{formik.errors.emailLogin}</p>
+            <p style={{ color: "red" }}>{viewModel.formik.errors.emailLogin}</p>
           </div>
 
           <div>
@@ -119,10 +65,12 @@ function LoginView() {
               id="password"
               placeholder="••••••••"
               className="bg-lime-50 border border-gray-200 text-green-700 text-sm rounded-lg focus:ring-green-400 focus:border-green-400 block w-full p-2.5 dark:bg-indigo-800 dark:border-pink-500 dark:placeholder-pink-300 dark:placeholder-opacity-60 dark:text-pink-400 dark:focus:ring-pink-400 dark:focus:border-pink-400"
-              onChange={formik.handleChange}
-              value={formik.values.passwordLogin}
+              onChange={viewModel.formik.handleChange}
+              value={viewModel.formik.values.passwordLogin}
             />
-            <p style={{ color: "red" }}>{formik.errors.passwordLogin}</p>
+            <p style={{ color: "red" }}>
+              {viewModel.formik.errors.passwordLogin}
+            </p>
           </div>
 
           <div className="flex items-start">

@@ -25,7 +25,9 @@ function Footer() {
             className="col-span-1 text-lime-100 dark:text-white "
             id="navbar-footer"
           >
-            <h4 className="font-bold mb-3 text-xl ">Section</h4>
+            <h4 className="font-bold mb-3 text-xl text-lime-300 dark:text-pink-400">
+              Section
+            </h4>
             <a
               href="#home"
               className="inline font-semibold hover:text-lime-300 dark:hover:text-pink-400"
@@ -53,14 +55,16 @@ function Footer() {
           </div>
 
           <div className="col-span-1 text-lime-100 dark:text-white">
-            <h4 className="font-bold mb-3 text-xl">Address</h4>
+            <h4 className="font-bold mb-3 text-xl text-lime-300 dark:text-pink-400">
+              Address
+            </h4>
             <p className="font-semibold">KS Tubun 3 18</p>
             <p className="font-semibold">Jakarta Barat, 11410</p>
             <p className="font-semibold">Indonesia</p>
           </div>
 
           <div className="col-span-2 text-lime-100 dark:text-white">
-            <h4 className="font-bold mb-3 text-lg">
+            <h4 className="font-bold mb-3 text-lg text-lime-300 dark:text-pink-400">
               Subscribe to our newsletter
             </h4>
             <p className="font-semibold pb-3">
@@ -108,49 +112,44 @@ function Footer() {
         </p>
         <ul className="list-unstyled flex gap-3">
           <li>
-            <button
-              type="button"
-              onClick="window.location.href='https://www.instagram.com/achmad.hfzd/'"
+            <a
+              href="https://www.instagram.com/achmad.hfzd/"
               className="icon-link hover:text-emerald-400 dark:hover:text-pink-400"
             >
               <FontAwesomeIcon icon={faInstagram} beatFade size="2x" />
-            </button>
+            </a>
           </li>
           <li>
-            <button
-              type="button"
-              onClick="window.location.href='https://www.facebook.com/alterra.academy'"
+            <a
+              href="https://www.facebook.com/alterra.academy"
               className="icon-link hover:text-emerald-400 dark:hover:text-pink-400"
             >
               <FontAwesomeIcon icon={faFacebook} beatFade size="2x" />
-            </button>
+            </a>
           </li>
           <li>
-            <button
-              type="button"
-              onClick="window.location.href='https://twitter.com/KampusMerdeka'"
+            <a
+              href="https://twitter.com/KampusMerdeka"
               className="icon-link hover:text-emerald-400 dark:hover:text-pink-400"
             >
               <FontAwesomeIcon icon={faTwitter} beatFade size="2x" />
-            </button>
+            </a>
           </li>
           <li>
-            <button
-              type="button"
-              onClick="window.location.href='https://www.linkedin.com/school/alterraacademy/mycompany/'"
+            <a
+              href="https://www.linkedin.com/school/alterraacademy/mycompany/'"
               className="icon-link hover:text-emerald-400 dark:hover:text-pink-400"
             >
               <FontAwesomeIcon icon={faLinkedin} beatFade size="2x" />
-            </button>
+            </a>
           </li>
           <li>
-            <button
-              type="button"
-              onClick="window.location.href='https://github.com/achmadhafizd'"
+            <a
+              href="https://github.com/achmadhafizd"
               className="icon-link hover:text-emerald-400 dark:hover:text-pink-400"
             >
               <FontAwesomeIcon icon={faGithubAlt} beatFade size="2x" />
-            </button>
+            </a>
           </li>
         </ul>
       </div>

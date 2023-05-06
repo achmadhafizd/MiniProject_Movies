@@ -1,76 +1,9 @@
 import { Label } from "flowbite-react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { gql, useMutation } from "@apollo/client";
-import { useRegisterSuccess } from "../../config/Toastify/Toastify";
+import RegisterViewModel from "./Register.viewModel";
 
 function RegisterView() {
-  const navigate = useNavigate();
-
-  const INSERT_USER = gql`
-    mutation INSERT_SIGNUP(
-      $emailSignUp: String!
-      $fullName: String!
-      $passwordSignUp: String!
-      $repeatPasswordSignUp: String!
-    ) {
-      insert_Users_one(
-        object: {
-          emailSignUp: $emailSignUp
-          fullName: $fullName
-          passwordSignUp: $passwordSignUp
-          repeatPasswordSignUp: $repeatPasswordSignUp
-        }
-      ) {
-        id
-      }
-    }
-  `;
-
-  const [insertUsers] = useMutation(INSERT_USER);
-
-  const ValSignUp = Yup.object().shape({
-    emailSignUp: Yup.string()
-      .email("Invalid email address")
-      .required("E-mail is required"),
-    fullName: Yup.string()
-      .min(3)
-      .max(40)
-      .required("Full name is required")
-      .label("Full Name"),
-    passwordSignUp: Yup.string()
-      .required("Password is required")
-      .label("Password"),
-    repeatPasswordSignUp: Yup.string()
-      .oneOf([Yup.ref("passwordSignUp"), null], "Password must match")
-      .required("Repeat Password is required"),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      emailSignUp: "",
-      fullName: "",
-      passwordSignUp: "",
-      repeatPasswordSignUp: "",
-    },
-    validationSchema: ValSignUp,
-
-    onSubmit: (values) => {
-      insertUsers({
-        variables: {
-          emailSignUp: values.emailSignUp,
-          fullName: values.fullName,
-          passwordSignUp: values.passwordSignUp,
-          repeatPasswordSignUp: values.repeatPasswordSignUp,
-        },
-      });
-      useRegisterSuccess();
-      formik.resetForm();
-    },
-  });
-
+  const viewModel = RegisterViewModel();
   return (
     <div className="flex justify-center items-center py-20 bg-lime-100 dark:bg-indigo-950">
       <div className="w-full max-w-sm p-4 bg-emerald-600 border border-lime-100 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-indigo-700">
@@ -81,7 +14,7 @@ function RegisterView() {
           <button
             className="inline-block text-lime-100 dark:text-pink-400 hover:bg-gray-800 dark:hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
             type="button"
-            onClick={() => navigate("/")}
+            onClick={() => viewModel.navigate("/")}
           >
             <svg
               aria-hidden="true"
@@ -100,7 +33,10 @@ function RegisterView() {
           </button>
         </div>
 
-        <form className="flex flex-col gap-4 " onSubmit={formik.handleSubmit}>
+        <form
+          className="flex flex-col gap-4 "
+          onSubmit={viewModel.formik.handleSubmit}
+        >
           <div>
             <div className="mb-2 block pt-6">
               <Label
@@ -115,10 +51,12 @@ function RegisterView() {
               type="email"
               placeholder="JohnCena@gmail.com"
               name="emailSignUp"
-              onChange={formik.handleChange}
-              value={formik.values.emailSignUp}
+              onChange={viewModel.formik.handleChange}
+              value={viewModel.formik.values.emailSignUp}
             />
-            <p style={{ color: "red" }}>{formik.errors.emailSignUp}</p>
+            <p style={{ color: "red" }}>
+              {viewModel.formik.errors.emailSignUp}
+            </p>
           </div>
 
           <div>
@@ -135,10 +73,10 @@ function RegisterView() {
               type="text"
               placeholder="John"
               name="fullName"
-              onChange={formik.handleChange}
-              value={formik.values.fullName}
+              onChange={viewModel.formik.handleChange}
+              value={viewModel.formik.values.fullName}
             />
-            <p style={{ color: "red" }}>{formik.errors.fullName}</p>
+            <p style={{ color: "red" }}>{viewModel.formik.errors.fullName}</p>
           </div>
 
           <div>
@@ -155,10 +93,12 @@ function RegisterView() {
               type="password"
               name="passwordSignUp"
               placeholder="••••••••"
-              onChange={formik.handleChange}
-              value={formik.values.passwordSignUp}
+              onChange={viewModel.formik.handleChange}
+              value={viewModel.formik.values.passwordSignUp}
             />
-            <p style={{ color: "red" }}>{formik.errors.passwordSignUp}</p>
+            <p style={{ color: "red" }}>
+              {viewModel.formik.errors.passwordSignUp}
+            </p>
           </div>
 
           <div>
@@ -175,10 +115,12 @@ function RegisterView() {
               placeholder="••••••••"
               className="bg-lime-50 border border-gray-200 text-green-700 text-sm rounded-lg focus:ring-green-400 focus:border-green-400 block w-full p-2.5 dark:bg-indigo-800 dark:border-pink-500 dark:placeholder-pink-300 dark:placeholder-opacity-60 dark:text-pink-400 dark:focus:ring-pink-400 dark:focus:border-pink-400"
               name="repeatPasswordSignUp"
-              onChange={formik.handleChange}
-              value={formik.values.repeatPasswordSignUp}
+              onChange={viewModel.formik.handleChange}
+              value={viewModel.formik.values.repeatPasswordSignUp}
             />
-            <p style={{ color: "red" }}>{formik.errors.repeatPasswordSignUp}</p>
+            <p style={{ color: "red" }}>
+              {viewModel.formik.errors.repeatPasswordSignUp}
+            </p>
           </div>
 
           <button

@@ -1,33 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useSearchData } from "../../config/redux/movies/moviesSelector";
 import { RatingStars } from "../../components/molecules";
 import detailMovieSlice from "../../config/redux/MoviesDetails/moviesDetailSlice";
+import SearchMovieViewModel from "./SearchMovie.viewModel";
 
 function SearchMovie() {
-  const dispatch = useDispatch();
-  const searchData = useSearchData() || [];
-  console.log(searchData);
-  const baseImgUrl = import.meta.env.VITE_BASEIMGURL;
-
+  const viewModel = SearchMovieViewModel();
   return (
     <div className="md:container p-2 gap-3 flex flex-wrap justify-between">
-      {searchData
+      {viewModel.searchData
         .filter((movie) => movie.poster_path !== null)
         .map((movie) => (
           <div className="flex justify-between items-center hover:opacity-75">
             <Link
               to={`/DetailMovie/${movie.id}`}
               onClick={() =>
-                dispatch(detailMovieSlice.actions.setDetailMovies(movie))
+                viewModel.dispatch(
+                  detailMovieSlice.actions.setDetailMovies(movie)
+                )
               }
             >
               <div className="w-full max-w-xs my-3 bg-emerald-700 border border-emerald-700 rounded-lg shadow dark:bg-indigo-800 dark:border-indigo-800 gap-5 ">
                 <p>
                   <img
                     className="rounded-md"
-                    src={`${baseImgUrl}/${movie.poster_path}`}
+                    src={`${viewModel.baseImgUrl}/${movie.poster_path}`}
                     alt={movie.title}
                   />
                 </p>
