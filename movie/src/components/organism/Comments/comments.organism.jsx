@@ -1,17 +1,32 @@
 import React from "react";
-import EditDeleteButton from "../EditDeleteButton/EditDeleteButton.molecule";
+import EditDeleteButton from "../../molecules/EditDeleteButton/EditDeleteButton.molecule";
 
-function comments({ isiKomen, fullName }) {
+function comments({
+  isiKomen,
+  fullName,
+  handleDelete,
+  handleEdit,
+  commentsId,
+  userId,
+  user,
+  komen,
+  LoggedIn,
+}) {
   return (
     <div>
-      <div className="mx-auto max-w-5xl px-4 py-8">
-        <section className="rounded-lg bg-emerald-700 dark:bg-indigo-600 p-4">
+      <div className="mx-auto max-w-5xl pt-2">
+        <section className="rounded-lg bg-emerald-700 dark:bg-indigo-800 p-4">
           <blockquote>
             <div className="flex justify-between items-center">
               <p className="font-medium text-lime-100 dark:text-white">
                 {isiKomen}
               </p>
-              <EditDeleteButton />
+              {LoggedIn && user.id === userId ? (
+                <EditDeleteButton
+                  DeleteButton={() => handleDelete(commentsId)}
+                  EditButton={() => handleEdit(komen)}
+                />
+              ) : null}
             </div>
 
             <cite className="inline-flex items-center not-italic">
