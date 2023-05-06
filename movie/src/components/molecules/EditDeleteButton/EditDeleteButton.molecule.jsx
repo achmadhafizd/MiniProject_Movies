@@ -1,13 +1,15 @@
 import React from "react";
 
-function EditDeleteButton() {
+function EditDeleteButton({ DeleteButton, EditButton }) {
   return (
     <div>
       <span className="inline-flex overflow-hidden rounded-md border border-black bg-lime-100 dark:bg-pink-300 shadow-sm">
         <button
           type="button"
           className="inline-block border-e border-black p-3 text-gray-700 hover:bg-green-400 dark:hover:bg-green-400 focus:relative"
-          title="Edit Product"
+          title="Edit Movie"
+          id="EditMovie"
+          onClick={EditButton}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +30,9 @@ function EditDeleteButton() {
         <button
           type="button"
           className="inline-block p-3 text-gray-700 hover:text-gray-50 hover:bg-red-500 focus:relative"
-          title="Delete Product"
+          title="Delete Comment"
+          id="DeleteMovie"
+          onClick={DeleteButton}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
