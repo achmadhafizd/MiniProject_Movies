@@ -29,13 +29,11 @@ function DetailPageViewModel() {
   const { id } = useParams();
   const movieId = parseInt(id, 10);
   const movieDetail = useMoviesDetailSelector();
-  console.log(movieDetail.genre_ids);
   const dispatch = useDispatch();
   const LoggedIn = useSignInSelector();
   const user = useUserSelector();
   const isEdit = useIsEdit();
   const movieGenre = useGenreMovieSelector();
-  console.log(movieGenre);
   const baseImgUrl = import.meta.env.VITE_BASEIMGURL;
 
   useEffect(() => {
