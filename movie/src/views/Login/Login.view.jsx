@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LoginViewModel from "./Login.viewModel";
 
 function LoginView() {
@@ -102,12 +103,12 @@ function LoginView() {
 
           <div className="text-sm font-medium text-lime-100 dark:text-white">
             Not registered?{" "}
-            <a
-              href="/register"
+            <Link
+              to="/register"
               className="text-lime-300 hover:underline dark:text-pink-400"
             >
               Create account
-            </a>
+            </Link>
           </div>
         </form>
       </div>
