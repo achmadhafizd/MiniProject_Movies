@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useFormik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import authSlice from "../../config/redux/Auth/authSlice";
 import { useLoginInvalid } from "../../config/Toastify/Toastify";
@@ -154,12 +154,12 @@ function LoginView() {
 
           <div className="text-sm font-medium text-lime-100 dark:text-white">
             Not registered?{" "}
-            <a
-              href="/register"
+            <Link
+              to="/register"
               className="text-lime-300 hover:underline dark:text-pink-400"
             >
               Create account
-            </a>
+            </Link>
           </div>
         </form>
       </div>
