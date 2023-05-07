@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Avatar, Button, DarkThemeToggle, Flowbite } from "flowbite-react";
 import { SearchInput } from "../../molecules";
 import NavibarOrganismModel from "./Navibar.organismModel";
+import LibraLogo from "../../../assets/LibraLogo.png";
 import "./Navibar.organims.css";
 
 function Navibar() {
@@ -11,8 +12,8 @@ function Navibar() {
     <div className="item-center">
       <nav className="bg-emerald-700 border-gray-200 dark:bg-indigo-800">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="/" className="flex items-center">
-            {/* <img src="/" className="h-8 mr-3" alt="Logo" /> */}
+          <a href="/" className="flex items-center gap-3">
+            <img src={LibraLogo} className="h-12" alt="Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-lime-100 hover:text-lime-300 dark:text-white dark:hover:text-pink-400">
               MovieLibra
             </span>

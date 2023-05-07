@@ -43,11 +43,14 @@ function DetailPageViewModel() {
   const [insertKomen] = useMutation(insertKomentarS);
   const [deleteKomen] = useMutation(deleteKomentarS);
   const [updateKomen] = useMutation(updateKomentarS);
-  const { data: SubsDataKomen } = useSubscription(subsKomentarS, {
-    variables: {
-      _eq: movieId,
-    },
-  });
+  const { data: SubsDataKomen, loading: SubsLoadingKomen } = useSubscription(
+    subsKomentarS,
+    {
+      variables: {
+        _eq: movieId,
+      },
+    }
+  );
 
   const ValComment = Yup.object().shape({
     IsiKomen: Yup.string()
@@ -118,6 +121,7 @@ function DetailPageViewModel() {
     handleEdit,
     user,
     isEdit,
+    SubsLoadingKomen,
   };
 }
 

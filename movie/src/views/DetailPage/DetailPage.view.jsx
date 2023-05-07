@@ -2,9 +2,11 @@ import * as React from "react";
 import ButtonKomen from "../../components/atoms/Button/ButtonKomen.atom";
 import { Comments, InputFormComment } from "../../components/organism";
 import DetailPageViewModel from "./DetailPage.viewModel";
+import { LoadingMag } from "../../components/atoms";
 
 function DetailPage() {
   const viewModel = DetailPageViewModel();
+
   return (
     <div className="bg-green-800 dark:bg-indigo-950">
       <div>
@@ -75,26 +77,30 @@ function DetailPage() {
           </div>
 
           <div
-            className="col-span-2 text-lime-100 overflow-y-scroll"
+            className="col-span-2 text-lime-100 overflow-y-scroll "
             style={{ maxHeight: "530px" }}
           >
-            {viewModel.SubsDataKomen?.Comments.map((komen) => {
-              const komenUser = komen.Comments_To_User;
-              return (
-                <Comments
-                  key={komen.comment_id}
-                  isiKomen={komen.komentar}
-                  fullName={komenUser.fullName}
-                  userId={komen.user_id}
-                  commentsId={komen.comment_id}
-                  handleDelete={viewModel.handleDelete}
-                  handleEdit={viewModel.handleEdit}
-                  user={viewModel.user}
-                  komen={komen}
-                  LoggedIn={viewModel.LoggedIn}
-                />
-              );
-            })}
+            {viewModel.SubsLoadingKomen ? (
+              <LoadingMag />
+            ) : (
+              viewModel.SubsDataKomen?.Comments.map((komen) => {
+                const komenUser = komen.Comments_To_User;
+                return (
+                  <Comments
+                    key={komen.comment_id}
+                    isiKomen={komen.komentar}
+                    fullName={komenUser.fullName}
+                    userId={komen.user_id}
+                    commentsId={komen.comment_id}
+                    handleDelete={viewModel.handleDelete}
+                    handleEdit={viewModel.handleEdit}
+                    user={viewModel.user}
+                    komen={komen}
+                    LoggedIn={viewModel.LoggedIn}
+                  />
+                );
+              })
+            )}
           </div>
         </div>
       </div>
