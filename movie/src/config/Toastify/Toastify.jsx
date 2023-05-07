@@ -1,4 +1,20 @@
-import { toast } from "react-toastify";
+import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+export const ToastifyContainer = () => {
+  <ToastContainer
+    position="top-center"
+    autoClose={2000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="dark"
+  />;
+};
 
 // #region Login
 export const useLoginInvalid = () =>
