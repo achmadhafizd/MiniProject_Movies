@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation, useSubscription } from "@apollo/client";
 import {
   useRegisterFailed,
   useRegisterSuccess,
@@ -12,7 +12,7 @@ function RegisterViewModel() {
   const navigate = useNavigate();
 
   const [insertUsers] = useMutation(INSERT_USER);
-  const { data: RetrieveDataSignUp } = useQuery(RETRIEVE_SIGNUP);
+  const { data: RetrieveDataSignUp } = useSubscription(RETRIEVE_SIGNUP);
 
   const ValSignUp = Yup.object().shape({
     emailSignUp: Yup.string()
