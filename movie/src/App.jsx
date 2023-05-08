@@ -25,7 +25,6 @@ function App() {
             pauseOnHover
             theme="dark"
           />
-          ;
           <RootRouter />
         </PersistGate>
       </Provider>
