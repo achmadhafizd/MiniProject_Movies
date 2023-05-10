@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useSubscription } from "@apollo/client";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ function LoginViewModel() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data: RetrieveDataSignUp } = useQuery(RETRIEVE_SIGNUP);
+  const { data: RetrieveDataSignUp } = useSubscription(RETRIEVE_SIGNUP);
 
   const ValSignIn = Yup.object().shape({
     emailLogin: Yup.string()

@@ -7,7 +7,7 @@ import GenreMoviesTemplateView from "./GenreMovies.templateView";
 function GenreMoviesTemplate() {
   const templateModel = GenreMoviesTemplateView();
   return (
-    <div>
+    <div className="h-screen">
       <h1 className="flex font-bold text-green-700 text-2xl dark:text-white ms-3 pt-5 justify-items-center">
         <span className="text-red-500">|</span> Genre{" "}
         {templateModel.genreMovie.name}

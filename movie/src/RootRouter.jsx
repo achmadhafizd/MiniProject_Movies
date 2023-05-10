@@ -26,8 +26,8 @@ function RootRouter() {
           <Route path="DetailMovie/:id" element={<DetailPageView />} />
           <Route path="genre/:id" element={<GenreMoviesTemplate />} />
           <Route path="upcoming" element={<UpcomingMoviesView />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

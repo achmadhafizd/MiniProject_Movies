@@ -28,7 +28,9 @@ function NotFound() {
             Uh-oh!
           </h1>
 
-          <p className="mt-4 text-green-500  mb-8">We cant find that page.</p>
+          <p className="mt-4 text-green-500  mb-8">
+            Data atau halaman tidak ditemukan
+          </p>
           <div>
             <a
               className="group relative inline-block focus:outline-none focus:ring"

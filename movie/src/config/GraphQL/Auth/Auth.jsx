@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const RETRIEVE_SIGNUP = gql`
-  query RETRIEVE_SIGNUP {
+  subscription RETRIEVE_SIGNUP {
     Users {
       id
       emailSignUp
